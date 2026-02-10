@@ -55,4 +55,18 @@ router.get('/', authenticateToken, requireAdmin, async (req, res) => {
   }
 });
 
+// Admin: change user role
+router.patch('/:id/role', authenticateToken, requireAdmin, async (req, res) => {
+  const { id } = req.params
+  const { rol } = req.body
+  if (!['admin','ciudadano'].includes(rol)) return res.status(400).json({ message: 'Rol inválido' })
+  try {
+    await db.query('UPDATE usuarios SET rol=$1 WHERE id=$2', [rol, id])
+    res.json({ message: 'Rol actualizado' })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
 module.exports = router;

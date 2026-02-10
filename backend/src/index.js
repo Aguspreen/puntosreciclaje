@@ -13,6 +13,7 @@ app.use(express.json());
 app.use('/usuarios', authRoutes);
 app.use('/puntos', puntosRoutes);
 app.use('/reportes', reportesRoutes);
+app.use('/sugerencias', require('./routes/sugerencias'));
 
 app.get('/', (req, res) => res.json({ ok: true, env: process.env.NODE_ENV || 'dev' }));
 
