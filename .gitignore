@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.env
+/.parcel-cache
+/.turbo
+coverage/
+frontend/node_modules/
+backend/node_modules/
