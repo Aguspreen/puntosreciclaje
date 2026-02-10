@@ -2,6 +2,8 @@ import React from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Login from './pages/Login'
 import MapPage from './pages/Map'
+import AdminPanel from './pages/AdminPanel'
+import ProtectedRoute from './components/ProtectedRoute'
 
 export default function App(){
   return (
@@ -12,6 +14,7 @@ export default function App(){
       <Routes>
         <Route path="/" element={<MapPage/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/admin" element={<ProtectedRoute adminOnly><AdminPanel/></ProtectedRoute>} />
       </Routes>
     </div>
   )

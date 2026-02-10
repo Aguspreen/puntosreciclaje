@@ -17,4 +17,8 @@ app.use('/reportes', reportesRoutes);
 app.get('/', (req, res) => res.json({ ok: true, env: process.env.NODE_ENV || 'dev' }));
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+if (require.main === module) {
+	app.listen(PORT, () => console.log(`Server listening on ${PORT}`));
+}
+
+module.exports = app;

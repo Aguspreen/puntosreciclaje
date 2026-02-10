@@ -43,4 +43,16 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// Admin: listar usuarios
+const { authenticateToken, requireAdmin } = require('../middleware/auth');
+router.get('/', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const result = await db.query('SELECT id, nombre, correo, rol FROM usuarios');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;
